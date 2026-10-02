@@ -51,16 +51,16 @@ Web-authentication-System/
 
 2. **Setup Database**
    - Open phpMyAdmin
-   - Create a new database (e.g., `web_auth_db`)
-   - Import the database configuration in `config.php`
+   - Create a database named `users_db`
+   - Make sure the existing `users_db` database is available to MySQL
 
 3. **Configure Database Connection**
-   - Update `config.php` with your database credentials:
+   - Confirm the credentials in `config.php` match your local MySQL setup:
    ```php
    $host = 'localhost';
    $db_user = 'root';
    $db_pass = '';
-   $db_name = 'web_auth_db';
+   $db_name = 'users_db';
    ```
 
 4. **Run the Application**

@@ -8,10 +8,12 @@ $errors = [
     ];
     $activeForm = $_SESSION['active_form'] ?? 'login';
 
-    session_unset();
+    unset($_SESSION['login_error'], $_SESSION['register_error'], $_SESSION['active_form']);
 
     function showError($error) {
-        return !empty($error) ? "<p class='error-message'>$error</p>" : '';
+        return !empty($error)
+            ? "<p class='error-message'>" . htmlspecialchars($error, ENT_QUOTES, 'UTF-8') . "</p>"
+            : '';
     }
 
     function isActiveForm($formName, $activeForm) {
@@ -25,7 +27,7 @@ $errors = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>form</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
