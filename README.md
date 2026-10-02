@@ -93,7 +93,7 @@ Web-authentication-System/
 
 ## Current Status
 
-✅ **Completed**
+ **Completed**
 - User registration with email validation
 - Secure login system with password encryption
 - Role-based access control (Admin/User)
@@ -101,7 +101,7 @@ Web-authentication-System/
 - Form validation and error handling
 - Responsive UI design
 
-🚧 **In Development**
+ **In Development**
 - Dashboard utilities and features
 - Additional user management tools
 - Admin control panel features
@@ -135,7 +135,7 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-**Subrayant**
+**Suh brayant**
 
 ## Contact
 
