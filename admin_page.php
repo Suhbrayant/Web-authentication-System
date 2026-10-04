@@ -6,7 +6,7 @@ $adminId   = $_SESSION['user_id'];
 $adminName = $_SESSION['name'] ?? 'Admin';
 $tab       = $_GET['tab'] ?? 'overview';
 
-// ── POST handlers ─────────────────────────────────────────
+//  POST handlers
 
 // Post new internship
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
@@ -69,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// ── Mark notifications read ───────────────────────────────
+//  Mark notifications read ─
 if (isset($_GET['mark_read'])) {
     $conn->query("UPDATE notifications SET is_read=1 WHERE user_id=$adminId");
     header("Location: admin_page.php?tab=notifications"); exit();
 }
 
-// ── Data queries ──────────────────────────────────────────
+//  Data queries 
 $totalStudents    = $conn->query("SELECT COUNT(*) c FROM users WHERE role='user'")->fetch_assoc()['c'];
 $totalInternships = $conn->query("SELECT COUNT(*) c FROM internships WHERE status='open'")->fetch_assoc()['c'];
 $totalApps        = $conn->query("SELECT COUNT(*) c FROM applications")->fetch_assoc()['c'];
@@ -96,7 +96,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
 </head>
 <body class="admin-dashboard">
 
-<!-- ══ SIDEBAR ══ -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <span>InternConnect</span>
@@ -137,7 +137,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
   </div>
 </aside>
 
-<!-- ══ MAIN ══ -->
+<!--  MAIN  -->
 <main class="main">
   <div class="topbar">
     <h1><?= ucfirst(str_replace('_',' ',$tab)) ?></h1>
@@ -151,7 +151,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
   <div class="page-content">
     <?php if($flash): ?><div class="flash">✓ <?= htmlspecialchars($flash) ?></div><?php endif; ?>
 
-    <!-- ══════════ OVERVIEW ══════════ -->
+    <!--  OVERVIEW  -->
     <?php if($tab === 'overview'): ?>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-label">Registered Students</div><div class="stat-value accent"><?= $totalStudents ?></div></div>
@@ -185,7 +185,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ INTERNSHIPS ══════════ -->
+    <!--  INTERNSHIPS  -->
     <?php elseif($tab === 'internships'): ?>
     <div class="card">
       <div class="card-header">
@@ -227,7 +227,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ POST INTERNSHIP ══════════ -->
+    <!--  POST INTERNSHIP  -->
     <?php elseif($tab === 'post_internship'): ?>
     <div class="card">
       <div class="card-header"><h2>Post a New Internship</h2></div>
@@ -256,7 +256,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ APPLICATIONS ══════════ -->
+    <!--  APPLICATIONS  -->
     <?php elseif($tab === 'applications'): ?>
     <div class="card">
       <div class="card-header"><h2>All Applications</h2></div>
@@ -307,7 +307,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ STUDENTS ══════════ -->
+    <!--  STUDENTS  -->
     <?php elseif($tab === 'students'): ?>
     <div class="card">
       <div class="card-header"><h2>Registered Students</h2></div>
@@ -333,7 +333,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ MESSAGES ══════════ -->
+    <!--  MESSAGES  -->
     <?php elseif($tab === 'messages'): ?>
     <?php
     // Mark messages as read when viewing
@@ -384,7 +384,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ COMPOSE ══════════ -->
+    <!--  COMPOSE  -->
     <?php elseif($tab === 'compose'): ?>
     <?php
     $toId   = (int)($_GET['to'] ?? 0);
@@ -414,7 +414,7 @@ $flash = $_SESSION['flash'] ?? ''; unset($_SESSION['flash']);
       </div>
     </div>
 
-    <!-- ══════════ NOTIFICATIONS ══════════ -->
+    <!--  NOTIFICATIONS  -->
     <?php elseif($tab === 'notifications'): ?>
     <div class="card">
       <div class="card-header">

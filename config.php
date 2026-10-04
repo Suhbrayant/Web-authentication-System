@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 $conn->set_charset("utf8mb4");
 
-// ── Auth helpers 
+// Auth helpers 
 function requireLogin() {
     if (!isset($_SESSION['user_id'])) {
         header("Location: login_register.php");
@@ -41,7 +41,7 @@ function requireUser() {
     }
 }
 
-// ── Notification helper 
+// Notification helper 
 function addNotification($conn, $userId, $message, $type = 'info') {
     $stmt = $conn->prepare(
         "INSERT INTO notifications (user_id, message, type) VALUES (?, ?, ?)"
@@ -51,7 +51,7 @@ function addNotification($conn, $userId, $message, $type = 'info') {
     $stmt->close();
 }
 
-// ── Unread counts for nav badges ─────────────────────────
+// Unread counts for nav badges
 function unreadMessages($conn, $userId) {
     $r = $conn->query("SELECT COUNT(*) c FROM messages WHERE receiver_id=$userId AND is_read=0");
     return $r->fetch_assoc()['c'];
@@ -62,7 +62,7 @@ function unreadNotifications($conn, $userId) {
     return $r->fetch_assoc()['c'];
 }
 
-// ── Upload directory (create if needed) ──────────────────
+// Upload directory (create if needed) 
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
 if (!is_dir(UPLOAD_DIR)) mkdir(UPLOAD_DIR, 0755, true);
 ?>
